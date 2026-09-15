@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+!.env.example
+
+# Podatki (surovi in vmesni podatki se ne verzionirajo)
+data/raw/*
+data/interim/*
+data/processed/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+
+# Notebooki - checkpointi
+.ipynb_checkpoints/
+
+# Reports
+reports/figures/*
+!reports/figures/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

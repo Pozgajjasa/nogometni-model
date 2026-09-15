@@ -1,0 +1,36 @@
+# Glavna konfiguracija projekta
+
+project:
+  name: "nogometni-model"
+  random_seed: 42
+
+leagues:
+  # Seznam lig za scraping/modeliranje - dopolni po potrebi
+  - "premier-league"
+  - "la-liga"
+  - "serie-a"
+  - "bundesliga"
+  - "ligue-1"
+
+data:
+  raw_dir: "data/raw"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  external_dir: "data/external"
+  date_range:
+    start: "2015-01-01"
+    end: null  # null = do danes
+
+elo:
+  initial_rating: 1500
+  k_factor: 20
+  home_advantage: 100
+
+model:
+  target_col: "result"  # H / D / A
+  test_split_type: "temporal"  # walk-forward, ne naključni split
+  calibration_method: "isotonic"  # ali "platt"
+
+betting:
+  min_ev_threshold: 0.02
+  kelly_fraction: 0.25  # frakcijski Kelly (25%)
