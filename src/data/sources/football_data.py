@@ -14,9 +14,15 @@ Dokumentacija: https://penaltyblog.readthedocs.io/en/latest/scrapers/footballdat
 """
 
 from pathlib import Path
+import warnings
 
 import pandas as pd
 import penaltyblog as pb
+from pandas.errors import PerformanceWarning
+
+# Ignorira opozorila o fragmentaciji iz knjižnice penaltyblog
+warnings.simplefilter(action="ignore", category=PerformanceWarning)
+
 
 # Mapping iz najinih internih imen lig (configs/config.yaml) v imena,
 # ki jih pričakuje penaltyblog.
@@ -46,7 +52,7 @@ def fetch_league_season(league: str, season: str) -> pd.DataFrame:
     except Exception as e:
         print(f"  [opozorilo] ni podatkov za {league} sezona {season}: {e}")
         return pd.DataFrame()
-
+    df = df.copy()  # Ustvari strnjen pomnilniški blok
     df["league"] = league
     df["source"] = "football-data.co.uk"
     return df
